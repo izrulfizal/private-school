@@ -1,0 +1,454 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Private Schools in Malaysia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href="css/style.css" rel="stylesheet">
+    <script src="schoolData.js"></script>
+<script src="js/side.js"></script>
+<link rel="shortcut icon" href="rap.ico">
+    <meta property="og:title" content="PRIVATE SCHOOLS IN MALAYSIA" />
+    <meta property="og:image" content="https://redangpow.com/school/img/ogimg.png">
+    <meta property="og:url" content="https://www.redangpow.com/school" />
+    <meta property="og:description" content="Search private schools based on curriculum in Malaysia"/>
+    <meta property="og:type" content="website" />
+    <meta name="Description" content="Search private schools based on curriculum in Malaysia">
+    <link rel="icon" href="rap.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143686193-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-143686193-4');
+</script>
+<style>
+        body { margin:0; padding:0; }
+        #map { position:fixed; top:0; bottom:0; width:100%;  }
+        #detailBar{
+            padding-left: 30px;
+        }
+        p{
+            margin: auto;
+            font-size: 13px;
+            color: white;
+        }
+        tr > td{
+            color: white;
+            text-align: left;
+            
+          
+        }
+        h5{
+            color: white;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        h6{
+            color: white;
+        }
+        h4{
+            color: white;
+
+        }
+        .search {
+            color: #fff !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: rgb(67, 132, 185);
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            border: none;
+            transition: all 0.4s ease 0s;
+        }
+        .search:hover{
+            background: #434343;
+            letter-spacing: 1px;
+            -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+            transition: all 0.4s ease 0s;
+        }
+        .geolocateU
+        {
+            z-index: -1;
+        }
+        .fixedleft > a > img {
+        position: fixed;
+        top: 2%;
+        left: 2%;
+        z-index:888;
+        height: 80px;
+        }
+
+        :root {
+            --main-bg-color:#943855;
+            }
+
+        .mapboxgl-popup-content{
+            background-color:var(--main-bg-color);
+        }
+        .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+        .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+        .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+            border-bottom-color: var(--main-bg-color);
+            }
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+        .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+        .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+            border-top-color: var(--main-bg-color);
+            }
+        .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+            border-right-color: var(--main-bg-color);
+            }
+        .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+            border-left-color: var(--main-bg-color);
+            }
+        .mapboxgl-popup-close-button{
+            color:rgba(255, 255, 255, 1);
+            
+        }
+
+            .viewSite {
+            color: #fff !important;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: #cc5b64;
+            padding: 4px;
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 50px;
+            display: inline-block;
+            border: none;
+            transition: all 0.4s ease 0s;
+            
+            }
+
+            .viewSite:hover {
+            text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+            -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            transition: all 0.4s ease 0s;
+            }
+
+            .viewSite:focus{
+                outline: 0 !important;
+            }
+        @media screen and (max-width:600px) {
+            
+            .fixedleft > a > img {
+            position: fixed;
+            top: 2%;
+            left: 2%;
+            z-index:888;
+            height: 50px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <!-- Insert details tab-->
+      <div class="sidebar-brand">
+        <a href="#">Private Schools</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <!-- Insert details tab-->
+      <div id="detailBar">
+          <hr>
+          <h4>Search by:</h4>
+          <br>
+          <table><tr>
+      <td style="vertical-align: center"><p>School Type:</p></td>
+    <td align="right"><select id="schoolType">
+        <option>All</option>
+        <option>International</option>
+        <option>Pre-schools</option>
+        <option>Pre-university</option>
+        <option>Private</option>
+  </select></td>
+</tr><br><tr>
+        <td style="vertical-align: center;"><p>Curriculum:</p></td>
+      <td align="right"><select id="curri">
+            <option value="#801336">All</option>
+            <option value="#c72c41">British</option>
+            <option value="#ee4540">Taiwanese</option>
+            <option value="#801336">American</option>
+            <option value="#c72c41">Malaysian</option>
+            <option value="#ee4540">Montessori</option>
+            <option value="#801336">Cambridge</option>
+            <option value="#c72c41">International</option>
+            <option value="#ee4540">Japanese</option>
+            <option value="#801336">Islamic</option>
+            <option value="#c72c41">French</option>
+            <option value="#ee4540">German</option>
+            <option value="#801336">Arabic</option>
+    </select></td>
+  </tr></table><br>
+</div>
+<br>
+<center><button onclick=search() class="search">Search</button></center><br>
+
+
+</div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+            <div id='map'></div>
+            <div id='geolocateU' class='geolocateU'></div>
+            <div class = "fixedleft"><a href="https://www.redangpow.com/" target="_blank"><img id="logo" src="img/RAP-logo.png"></a></div>
+            <div class="popup1"><span class="popuptext" id="myPopup"></span></div>
+    </div>
+
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
+</body>
+<script>
+$(".page-wrapper").removeClass("toggled");
+if ($(window).width() < 600) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaXpydWxmaXphbCIsImEiOiJjanl4c3N4bXIwNXEyM25tcDI0Y3ZpbGk1In0.1jrAAqPJCyUihJthcX7ltQ';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/izrulfizal/cjznvvw7713tm1dpfhz5idrku', //hosted style id
+    center: [102.2332763671875,3.9903006834714274],// starting position
+    zoom: 6, // starting zoom
+    bearing: 0,
+    
+});
+}
+else {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaXpydWxmaXphbCIsImEiOiJjanl4c3N4bXIwNXEyM25tcDI0Y3ZpbGk1In0.1jrAAqPJCyUihJthcX7ltQ';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/izrulfizal/cjznvvw7713tm1dpfhz5idrku', //hosted style id
+    center: [102.2332763671875,3.9903006834714274],// starting position
+    zoom: 7, // starting zoom
+    bearing: 0,
+    
+});
+}
+
+
+var currentMarkers = [];
+var names = Object.keys(chapters);
+var colorMarker = document.getElementById("curri").options[document.getElementById("curri").selectedIndex].value; 
+
+function getMarker(x,color)
+{
+    var el = document.createElement('div');
+    el.id = 'marker';
+    schoolName = Object.values(chapters)[x]["name"];
+    link = Object.values(chapters)[x]["website"];
+    address = Object.values(chapters)[x]["address"];
+    
+    age = Object.values(chapters)[x]["age"];
+    if(age == "na"){
+        age = " Not Available";
+    }
+
+    var popup = new mapboxgl.Popup({ offset: 25 })
+    // .setText(schoolName);   
+    popup.setHTML(
+        
+    "<center><br><h5>"+schoolName+"</h5><p>Age: </p><h6>"+age+"</h6><br><p>Address: </p><h6>"+address+"</h6><a href='"+link+"'><button class='viewSite'>Visit Site</button></a></center>"
+        
+        );
+    var marker = new mapboxgl.Marker({color: `${color}`});
+    marker.setLngLat([Object.values(chapters)[x]["longitude"],Object.values(chapters)[x]["latitude"]]);
+    marker.addTo(map);
+    marker.setPopup(popup);
+    currentMarkers.push(marker);
+}
+
+for (m = 0; m < names.length; m++) {
+
+    getMarker(m,colorMarker);
+    
+}
+
+
+function search(){
+    
+    console.clear();
+    
+    var curri = document.getElementById("curri").options[document.getElementById("curri").selectedIndex].text;
+    var school = document.getElementById("schoolType").options[document.getElementById("schoolType").selectedIndex].text;
+    var colorMarker = document.getElementById("curri").options[document.getElementById("curri").selectedIndex].value; 
+    console.log(curri);
+    console.log(school);
+    console.log(colorMarker);
+
+    
+
+    if (currentMarkers!==null) {
+                for (var j = currentMarkers.length - 1; j >= 0; j--) {
+                currentMarkers[j].remove();
+        }
+    }
+
+    if(curri == "All"){
+        var k;
+        var names = Object.keys(chapters);
+        x = 0;
+        if(school == "All"){
+            
+            for (j = 0; j < names.length; j++) {
+                    getMarker(j,colorMarker);
+                    x++;
+            }
+            console.log(x);
+            if(x == 0){
+            alert("No result");
+        }
+
+        }
+
+        if(school !== "All"){
+        for (k = 0; k < names.length; k++) {
+            
+            if(Object.values(chapters)[k]["schoolType"].includes(`${school}`) == true){
+
+                    getMarker(k,colorMarker);
+                    x++;
+            }
+
+        }
+        console.log(x);
+        if(x == 0){
+            alert("No result");
+        }
+
+    }
+
+}
+
+
+
+
+
+    if(curri !== "All"){
+        var i;
+        var names = Object.keys(chapters);
+        x = 0;
+        if(school !== "All"){
+            for (i = 0; i < names.length; i++) {
+                if(Object.values(chapters)[i]["curriculum"].includes(`${curri}`) == true && Object.values(chapters)[i]["schoolType"].includes(`${school}`) == true)
+                {
+
+                        getMarker(i,colorMarker);
+                        x++;
+                    
+                    
+                }
+            }
+            console.log(x);
+            if(x == 0){
+                alert("No result");
+            }
+        }
+
+        if(school == "All"){
+            
+            for (n = 0; n < names.length; n++) {
+                if(Object.values(chapters)[n]["curriculum"].includes(`${curri}`) == true)
+                {
+
+                        getMarker(n,colorMarker);
+                        x++;
+                    
+                    
+                }
+            }
+            console.log(x);
+            if(x == 0){
+                alert("No result");
+            }
+
+        }
+        
+    }
+    document.getElementById("myPopup").innerHTML = "Viewing " + school + " schools with " + curri + " curriculums<br>Result: "+x; 
+
+    var popup1 = document.getElementById("myPopup");
+    popup1.classList.toggle("show");
+        setTimeout(function() {
+            popup1.classList.toggle("show");
+    }, 3000);
+    $(".page-wrapper").removeClass("toggled");
+// console.log(currentMarkers.length);
+
+
+
+}
+
+const geolocateU = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true,
+        
+    },
+    fitBoundsOptions:{
+        maxZoom:8
+    },
+    trackUserLocation: true,
+    
+    
+});
+map.addControl(geolocateU);
+
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function locateStart() {
+    await sleep(2000);
+    geolocateU.trigger();
+}
+
+locateStart();
+
+
+</script>
+</html> 
